@@ -40,12 +40,12 @@ enum MetadataDisplayFormatter {
             return formatAltitude(value)
         }
 
-        return String(describing: value)
+        return MetadataNormalization.displayString(value.base)
     }
 
     private static func formatExposure(_ value: AnyHashable) -> String {
         guard let numeric = toDouble(value) else {
-            return String(describing: value)
+            return MetadataNormalization.displayString(value.base)
         }
 
         if numeric > 0, numeric < 1 {
@@ -58,7 +58,7 @@ enum MetadataDisplayFormatter {
 
     private static func formatAperture(_ value: AnyHashable) -> String {
         guard let numeric = toDouble(value) else {
-            return String(describing: value)
+            return MetadataNormalization.displayString(value.base)
         }
 
         return String(format: "f/%.1f", numeric)
@@ -73,12 +73,12 @@ enum MetadataDisplayFormatter {
             return "ISO \(Int(numeric.rounded()))"
         }
 
-        return String(describing: value)
+        return MetadataNormalization.displayString(value.base)
     }
 
     private static func formatMillimeters(_ value: AnyHashable) -> String {
         guard let numeric = toDouble(value) else {
-            return String(describing: value)
+            return MetadataNormalization.displayString(value.base)
         }
 
         return String(format: "%.2f mm", numeric)
@@ -86,7 +86,7 @@ enum MetadataDisplayFormatter {
 
     private static func formatCoordinate(_ value: AnyHashable) -> String {
         guard let numeric = toDouble(value) else {
-            return String(describing: value)
+            return MetadataNormalization.displayString(value.base)
         }
 
         return String(format: "%.6f°", numeric)
@@ -94,13 +94,15 @@ enum MetadataDisplayFormatter {
 
     private static func formatAltitude(_ value: AnyHashable) -> String {
         guard let numeric = toDouble(value) else {
-            return String(describing: value)
+            return MetadataNormalization.displayString(value.base)
         }
 
         return String(format: "%.2f m", numeric)
     }
 
     private static func toDouble(_ value: AnyHashable) -> Double? {
+        if let value = value.base as? NSNumber { return value.doubleValue }
+        if let value = value.base as? NSString { return value.doubleValue }
         if let value = value as? Double { return value }
         if let value = value as? Float { return Double(value) }
         if let value = value as? Int { return Double(value) }
