@@ -102,15 +102,16 @@ private struct ReportDetailView: View {
                 Section("Category 1 - PhotoKit") {
                     kv("Identifier", report.summary.localIdentifier)
                     kv("Media Kind", report.summary.mediaKind.rawValue)
+                    kv("Content Type", report.summary.contentTypeIdentifier ?? "-")
                     kv("Dimensions", "\(report.summary.width)x\(report.summary.height)")
                     kv("Duration", report.summary.duration > 0 ? String(format: "%.2f s", report.summary.duration) : "-")
                     kv("Favorite", report.summary.isFavorite ? "Yes" : "No")
                     kv("Hidden", report.summary.isHidden ? "Yes" : "No")
+                    kv("Has Adjustments", report.summary.hasAdjustments ? "Yes" : "No")
+                    kv("Added", MetadataDisplayFormatter.dateString(report.summary.addedDate))
                     kv("Created", MetadataDisplayFormatter.dateString(report.summary.creationDate))
                     kv("Modified", MetadataDisplayFormatter.dateString(report.summary.modificationDate))
-                    if let location = report.summary.location {
-                        kv("Location", String(format: "%.6f, %.6f", location.latitude, location.longitude))
-                    }
+                    kv("Location", formatLocation(report.summary.location))
                     kv("Source", report.summary.sourceType)
                     kv("Subtypes", report.summary.mediaSubtypes.joined(separator: ", "))
                     kv("Collections", report.collections.joined(separator: ", "))
@@ -161,6 +162,11 @@ private struct ReportDetailView: View {
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.trailing)
         }
+    }
+
+    private func formatLocation(_ location: CLLocationCoordinate2D?) -> String {
+        guard let location else { return "-" }
+        return String(format: "%.6f, %.6f", location.latitude, location.longitude)
     }
 }
 

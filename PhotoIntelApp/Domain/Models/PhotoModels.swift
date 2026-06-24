@@ -1,5 +1,6 @@
 import Foundation
 import CoreLocation
+import UniformTypeIdentifiers
 
 enum MediaKind: String, Codable {
     case image
@@ -12,11 +13,14 @@ struct PhotoAssetSummary: Identifiable {
     let id: String
     let localIdentifier: String
     let mediaKind: MediaKind
+    let contentTypeIdentifier: String?
     let width: Int
     let height: Int
     let duration: TimeInterval
     let isFavorite: Bool
     let isHidden: Bool
+    let hasAdjustments: Bool
+    let addedDate: Date?
     let creationDate: Date?
     let modificationDate: Date?
     let location: CLLocationCoordinate2D?
