@@ -23,6 +23,7 @@ struct PhotoAssetSummary: Identifiable {
     let burstIdentifier: String?
     let burstSelectionTypes: [String]
     let hasAdjustments: Bool
+    let adjustmentFormatIdentifier: String?
     let addedDate: Date?
     let creationDate: Date?
     let modificationDate: Date?

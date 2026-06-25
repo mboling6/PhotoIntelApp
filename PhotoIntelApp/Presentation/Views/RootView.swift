@@ -111,6 +111,7 @@ private struct ReportDetailView: View {
                     kv("Burst Identifier", report.summary.burstIdentifier ?? "-")
                     kv("Burst Selection Types", report.summary.burstSelectionTypes.joined(separator: ", "))
                     kv("Has Adjustments", report.summary.hasAdjustments ? "Yes" : "No")
+                    kv("Adjustment Format Identifier", report.summary.adjustmentFormatIdentifier ?? "-")
                     kv("Added", MetadataDisplayFormatter.dateString(report.summary.addedDate))
                     kv("Created", MetadataDisplayFormatter.dateString(report.summary.creationDate))
                     kv("Modified", MetadataDisplayFormatter.dateString(report.summary.modificationDate))

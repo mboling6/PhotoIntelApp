@@ -122,6 +122,7 @@ final class PhotoAssetService: PhotoAssetProviding {
             burstIdentifier: asset.burstIdentifier,
             burstSelectionTypes: burstSelectionTypesDescription(asset.burstSelectionTypes),
             hasAdjustments: asset.hasAdjustments,
+            adjustmentFormatIdentifier: asset.adjustmentFormatIdentifier,
             addedDate: asset.addedDate,
             creationDate: asset.creationDate,
             modificationDate: asset.modificationDate,
