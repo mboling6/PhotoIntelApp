@@ -19,6 +19,9 @@ struct PhotoAssetSummary: Identifiable {
     let duration: TimeInterval
     let isFavorite: Bool
     let isHidden: Bool
+    let representsBurst: Bool
+    let burstIdentifier: String?
+    let burstSelectionTypes: [String]
     let hasAdjustments: Bool
     let addedDate: Date?
     let creationDate: Date?

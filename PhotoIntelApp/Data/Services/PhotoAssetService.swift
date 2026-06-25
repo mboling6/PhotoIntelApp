@@ -118,6 +118,9 @@ final class PhotoAssetService: PhotoAssetProviding {
             duration: asset.duration,
             isFavorite: asset.isFavorite,
             isHidden: asset.isHidden,
+            representsBurst: asset.representsBurst,
+            burstIdentifier: asset.burstIdentifier,
+            burstSelectionTypes: burstSelectionTypesDescription(asset.burstSelectionTypes),
             hasAdjustments: asset.hasAdjustments,
             addedDate: asset.addedDate,
             creationDate: asset.creationDate,
@@ -146,6 +149,13 @@ final class PhotoAssetService: PhotoAssetProviding {
         if subtypes.contains(.videoHighFrameRate) { values.append("HighFrameRate") }
         if subtypes.contains(.videoTimelapse) { values.append("Timelapse") }
         if subtypes.contains(.videoCinematic) { values.append("Cinematic") }
+        return values
+    }
+
+    private func burstSelectionTypesDescription(_ types: PHAssetBurstSelectionType) -> [String] {
+        var values: [String] = []
+        if types.contains(.autoPick) { values.append("AutoPick") }
+        if types.contains(.userPick) { values.append("UserPick") }
         return values
     }
 }
